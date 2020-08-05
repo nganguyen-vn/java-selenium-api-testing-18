@@ -44,7 +44,7 @@ public class Topic_02_Xpath_Css_Locator {
 	}	
 	@Test
 	public void TC_03_Name() throws InterruptedException {
-		driver.findElement(By.name("login[username]")).sendKeys("test123")
+		driver.findElement(By.name("login[username]")).sendKeys("test123");
 		Thread.sleep(2000);
 		driver.findElement(By.name("email")).clear();
 	}	
