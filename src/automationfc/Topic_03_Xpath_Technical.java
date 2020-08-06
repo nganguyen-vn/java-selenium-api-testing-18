@@ -23,7 +23,7 @@ public class Topic_03_Xpath_Technical {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 	}
-	@Test
+	
 	public void TC_01_ID() throws InterruptedException {
 		
 		driver.get("http://live.demoguru99.com/");
@@ -44,7 +44,7 @@ public class Topic_03_Xpath_Technical {
 		
 		
 	}
-	@Test
+	
 	public void TC_02_ID() throws InterruptedException {
 		
 		driver.findElement(By.id("email")).sendKeys("1232434@11242.24324");
@@ -60,7 +60,7 @@ public class Topic_03_Xpath_Technical {
 		
 		
 	}
-	@Test
+	
 	public void TC_03_ID() throws InterruptedException {
 		
 		driver.findElement(By.id("email")).clear();
@@ -78,7 +78,7 @@ public class Topic_03_Xpath_Technical {
 		
 		
 	}
-	@Test
+	
 	public void TC_04_ID() throws InterruptedException {
 		
 		driver.findElement(By.id("email")).clear();
@@ -96,7 +96,7 @@ public class Topic_03_Xpath_Technical {
 		
 		
 	}
-	@Test
+	
 	public void TC_05_ID() throws InterruptedException {
 		
 		driver.findElement(By.id("email")).clear();
@@ -113,28 +113,47 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.xpath("//h1[contains(text(),'My Dashboard')]")).getText(), "MY DASHBOARD");
 		Assert.assertEquals(driver.findElement(By.xpath("//strong[contains(text(),'Hello, Automation Testing!')]")).getText(), "Hello, Automation Testing!");
 		
-		Assert.assertEquals(driver.findElement(By.xpath("div[@class='box-content']//p[contains(text(),'Automation Testing')]")).getText(), "Automation Testing");
+		Assert.assertTrue(driver.findElement(By.xpath("div[@class='box-content']//p[contains(text(),'Automation Testing')]")).isDisplayed());
 		//Click Account
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		//Click Logout
 		driver.findElement(By.xpath("//a[@title='Log out']")).click();
+		Assert.assertTrue (driver.findElement(By.xpath("//img[contains(@src,'logo.png')]")).isDisplayed());
+		Thread.sleep(2000);
 		
-	}
+	}@Test
 	public void TC_06_ID() throws InterruptedException {
 		driver.get("http://live.demoguru99.com/");
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
-		driver.findElement(By.id("firstname]")).sendKeys("Nga");
-		driver.findElement(By.id("middlename")).sendKeys("Thi");
-		driver.findElement(By.name("name='lastname'")).sendKeys("Nguyen");
+		
+		driver.findElement(By.id("firstname")).sendKeys("Nga");
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.name("lastname")).sendKeys("Nguyen");
+		Thread.sleep(2000);
+		
 		String email = "adele" + randomNumber() + "@gmail.com";
 		driver.findElement(By.className("validate-email")).sendKeys(email);
+		Thread.sleep(2000);
+		
 		driver.findElement(By.id("password")).sendKeys("123456");
+		Thread.sleep(2000);
+		
 		driver.findElement(By.name("confirmation")).sendKeys("123456");
+		Thread.sleep(2000);
+		
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
+		Thread.sleep(2000);
+		
 		String successMessage= driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText();
 		Assert.assertEquals(successMessage, "Thank you for registering with Main Website Store.");
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box']//p[contains(text(), Richard Rihana)]")).isDisplayed());
+		Thread.sleep(2000);
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box']//p[contains(text(), Nga Nguyen)]")).isDisplayed());
+		Thread.sleep(2000);
+		
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box']//p[contains(.,'"+ email +"')]")).isDisplayed());
 		//Click Account
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
@@ -147,7 +166,7 @@ public class Topic_03_Xpath_Technical {
 		
 	}
 	
-	@Test
+	
 	public void TC_07_ID() throws InterruptedException {
 		
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
