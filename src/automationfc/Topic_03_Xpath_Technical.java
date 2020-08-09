@@ -22,7 +22,7 @@ public class Topic_03_Xpath_Technical {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
-	}
+	}@Test
 	
 	public void TC_01_ID() throws InterruptedException {
 		
@@ -43,7 +43,7 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.id("advice-required-entry-email")).getText(), "This is a required field.");
 		
 		
-	}
+	}@Test
 	
 	public void TC_02_ID() throws InterruptedException {
 		
@@ -59,7 +59,7 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.id("advice-validate-email-email")).getText(), "Please enter a valid email address. For example johndoe@domain.com.");
 		
 		
-	}
+	}@Test
 	
 	public void TC_03_ID() throws InterruptedException {
 		
@@ -77,7 +77,7 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.id("advice-validate-password-pass")).getText(), "Please enter 6 or more characters without leading or trailing spaces.");
 		
 		
-	}
+	}@Test
 	
 	public void TC_04_ID() throws InterruptedException {
 		
@@ -95,15 +95,17 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.xpath("//span[contains(text(),'Invalid login or password.')]")).getText(), "Invalid login or password.");
 		
 		
-	}
+	}@Test
 	
 	public void TC_05_ID() throws InterruptedException {
+		driver.get("http://live.demoguru99.com/");
+		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 		
-		driver.findElement(By.id("email")).clear();
+		//driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("automation_13@gmail.com");
 		Thread.sleep(2000);
 		
-		driver.findElement(By.id("pass")).clear();
+		//driver.findElement(By.id("pass")).clear();
 		driver.findElement(By.id("pass")).sendKeys("123123");
 		Thread.sleep(2000);
 		
@@ -113,7 +115,8 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(driver.findElement(By.xpath("//h1[contains(text(),'My Dashboard')]")).getText(), "MY DASHBOARD");
 		Assert.assertEquals(driver.findElement(By.xpath("//strong[contains(text(),'Hello, Automation Testing!')]")).getText(), "Hello, Automation Testing!");
 		
-		Assert.assertTrue(driver.findElement(By.xpath("div[@class='box-content']//p[contains(text(),'Automation Testing')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("div[@class='box-content']//p[contains(.'Automation Testing')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("div[@class='box-content']//p[contains(.'automation_13@gmail.com')]")).isDisplayed());
 		//Click Account
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		//Click Logout
@@ -151,20 +154,21 @@ public class Topic_03_Xpath_Technical {
 		Assert.assertEquals(successMessage, "Thank you for registering with Main Website Store.");
 		Thread.sleep(2000);
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box']//p[contains(text(), Nga Nguyen)]")).isDisplayed());
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']//p[contains(text(),'Nga Nguyen')]")).isDisplayed());
 		Thread.sleep(2000);
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box']//p[contains(.,'"+ email +"')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']//p[contains(.,'"+ email +"')]")).isDisplayed());
 		//Click Account
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		//Click Logout
-		driver.findElement(By.xpath("//a[@title='Log out']")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Log Out')]")).click();
 		// Chờ cho element nào đó trên Home hiển thị
-		Assert.assertTrue (driver.findElement(By.xpath("//img[contains(@src,'logo.png')]")).isDisplayed());
+		Assert.assertTrue (driver.findElement(By.xpath("//img[@class='large']")).isDisplayed());
 		Thread.sleep(2000);
 		
 		
-	}
+	}@Test
 	
 	
 	public void TC_07_ID() throws InterruptedException {
