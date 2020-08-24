@@ -1,13 +1,13 @@
 package automationfc;
 
 import java.util.concurrent.TimeUnit;
-import java.util.List;
+//import java.util.List;
 import java.util.Random;
 
 //import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -188,4 +188,8 @@ public int randomNumber() {
 	Random rand=new Random();
 	return rand.nextInt(9999);
 }	
+@AfterClass
+public void afterClass() {
+	driver.quit();
+}
 }
