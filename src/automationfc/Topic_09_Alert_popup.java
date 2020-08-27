@@ -96,6 +96,8 @@ public class Topic_09_Alert_popup {
 	}
 	@Test
 	public void TC_04_AuthenAlert() throws InterruptedException {
+		String username= "admin";
+		String password= "admin";
 		//không biết URL là gì
 		driver.get("http://the-internet.herokuapp.com/basic_auth");
 		
@@ -112,7 +114,7 @@ public class Topic_09_Alert_popup {
 	public void handleAuthenticationAlert(String link, String username, String password) {
 		//link= http://the-internet.herokuapp.com/basic_auth
 		String splitLink[]= link.split("//");
-		link = splitLink[0]+ "//"+ username + ":"+ password+ "@"+ splitLink[1];
+		link = splitLink[0]+ "//"+ username + ":"+ password + "@"+ splitLink[1];
 		driver.get(link);
 		
 	}
