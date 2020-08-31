@@ -100,6 +100,54 @@ public void TC_04_Double_Click() throws InterruptedException {
 	Assert.assertTrue(driver.findElement(By.xpath("//p[@id='demo' and text()= 'Hello Automation']")).isDisplayed());
 	
 }
+@Test
+
+public void TC_05_Right_Click() throws InterruptedException {
+	driver.get("");
+	element= driver.findElement(By.xpath("//span[text()='right click me']"));
+	action.contextClick(element).perform();
+	
+	//hover quit
+	element=driver.findElement(By.cssSelector(".context-menu-icon-quit"));
+	action.moveToElement(element).perform();
+	
+	//verify  quit có hover/visible
+	String quitClassAttribute= element.getAttribute("class");
+	System.out.println(quitClassAttribute);
+	
+	Assert.assertTrue(quitClassAttribute.contains("context-menu-hover"));
+	Assert.assertTrue(quitClassAttribute.contains("context-menu-visible"));
+	
+	Assert.assertTrue(driver.findElement(By.cssSelector(".context-menu-icon-quit.context-menu-visible.context-menu-hover")));
+	
+	
+	
+	
+}
+@Test
+
+public void TC_06_Drag_Drop() throws InterruptedException {
+	driver.get("");
+	WebElement sourceCircle= driver.findElement(By.cssSelector("#draggable"));
+	WebElement targetCircle= driver.findElement(By.cssSelector("#dropable"));
+
+	action.dragAndDrop(sourceCircle, targetCircle).perform();
+	sleepInSecond(2);
+	Assert.assertEquals(targetCircle.getText(), "You did great!");
+}
+@Test
+
+public void TC_07_Drag_Drop_HTML5() throws InterruptedException {
+	driver.get("");
+	String sourceCss="#column-a";
+	String targetCss="#column-b";	
+	String java_script=readFile(javascriptPath);
+	java_script= java_script+ "$(\"" + sourceCss+ "\").simulateDragDrop({dropTarget: \"" + targetCss + "\"});";
+	jsExecutor.executeScrip(java_script);
+	sleepInSecond(2);
+	Assert.assertTrue(isDisplayed()) {})
+}
+
 public void sleepInSecond(long time) {
 	try {
 		Thread.sleep(time *1000);
