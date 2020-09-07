@@ -85,13 +85,25 @@ public class Topic_12_iFrame {
 		sleepInSecond(3);
 		
 		switchToWindowByID (parentID);
+		Assert.assertTrue(driver.findElement(By.xpath("//h1[text()='Tìm kiếm công việc mơ ước']")).isDisplayed();"
+		String childID=driver.getWindowHandles();
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.vietnamworks.com/?utm_source=from_kyna");
 		
+		//switch về tab cha
+		switchToWindowByID(childID);
+		Assert.assertEquals(driver.getCurrentUrl(),"https://kyna.vn");
 		
-		Set<String> allWindowIDs= driver.getWindowHandles();
-		for (String windowID: allWindowIDs) {
-			System.out.println(windowID);
-		}
+		//click vào Vietnamwork Learning
+		clickToElementByJS("//img[@alt='enterprise.vietnamworklearning.com']");
+		sleepInSecond(3);
+		
+		switchToWindowByTitle("Trang chủ | Vietnamworks Learning for Enterprise");
+		Assert.assertTrue(driver.findElement(By.cssSelector(".ga_login_header")).isDisplayed());
+		
+		//Set<String> allWindowIDs= driver.getWindowHandles();
+		//for (String windowID: allWindowIDs) {
+		//	System.out.println(windowID);
+		//}
 		
 		//driver.findElement(By.xpath("//img[@alt='vietnamwork.com']")).click();
 		//sleepInSecond(2);
@@ -133,10 +145,19 @@ public class Topic_12_iFrame {
 	}
 	
 	public void switchToWindowByTitle(String title) {
+		//lấy ra tất cả ID của window đang có
 		Set<String> allWindows= driver.getWindowHandles();
+		
+		//dùng vòng lặp duyệt qua ID
 		for (String runWindow: allWindows) {
+			
+			//switch vào từng cửa sổ tab trước
 			driver.switchTo().window(runWindow);
+			
+			//lấy ra cái title của tab đó
 			String currentWin= driver.getTitle();
+			
+			//ktra xem title của page nào bằng với tile mong muốn
 			if(currentWin.equals(title)) {
 				break;
 			}
